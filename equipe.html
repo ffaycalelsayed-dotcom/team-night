@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Football Recruit | Joueurs Arcade</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Background dynamique stade -->
+<div class="stadium-bg"></div>
+
+<header class="hero-arcade-small">
+  <h1>Nos Joueurs</h1>
+  <p>Découvrez nos talents arcade</p>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="equipe.html">Équipe</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<section class="grid-arcade">
+  <div class="card-arcade">
+    <h3>Joueur 1</h3>
+    <p>Poste : Attaquant</p>
+    <p>Âge : 20 ans</p>
+  </div>
+  <div class="card-arcade">
+    <h3>Joueur 2</h3>
+    <p>Poste : Milieu</p>
+    <p>Âge : 22 ans</p>
+  </div>
+  <div class="card-arcade">
+    <h3>Joueur 3</h3>
+    <p>Poste : Défenseur</p>
+    <p>Âge : 19 ans</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Football Recruit – Arcade Retro Insane
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const cards = document.querySelectorAll('.card-arcade');
+  if(cards.length > 0){
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width/2;
+        const cy = rect.height/2;
+        const dx = (x - cx)/cx * 15;
+        const dy = (y - cy)/cy * 15;
+        card.style.transform = `rotateY(${dx}deg) rotateX(${-dy}deg) translateZ(10px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+      });
+    });
+  }
+});
+</script>
+
+</body>
+</html>
