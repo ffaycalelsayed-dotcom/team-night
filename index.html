@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Football Recruit | Arcade Retro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Background dynamique stade -->
+<div class="stadium-bg"></div>
+
+<header class="hero-arcade">
+  <h1>⚽ FOOTBALL RECRUIT</h1>
+  <p>La plateforme ultime rétro arcade pour découvrir les talents</p>
+  <a href="equipe.html" class="btn-arcade">Voir les joueurs</a>
+</header>
+
+<nav>
+  <a href="index.html">Accueil</a>
+  <a href="equipe.html">Équipe</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<section class="grid-arcade">
+  <div class="card-arcade">  
+    <h3>🎯 Talents</h3>
+    <p>Découverte et suivi des jeunes joueurs prometteurs.</p>
+  </div>
+  <div class="card-arcade">
+    <h3>🏟 Clubs</h3>
+    <p>Connexion directe avec les clubs professionnels.</p>
+  </div>
+  <div class="card-arcade">
+    <h3>📈 Carrière</h3>
+    <p>Accompagnement vers le haut niveau.</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Football Recruit – Arcade Retro Insane
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const cards = document.querySelectorAll('.card-arcade');
+  if(cards.length > 0){
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width/2;
+        const cy = rect.height/2;
+        const dx = (x - cx)/cx * 15;
+        const dy = (y - cy)/cy * 15;
+        card.style.transform = `rotateY(${dx}deg) rotateX(${-dy}deg) translateZ(10px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+      });
+    });
+
+    // Animation flottante continue
+    let angle = 0;
+    function animateCards() {
+      angle += 0.5;
+      cards.forEach((card, i) => {
+        card.style.transform += ` rotateY(${angle + i*20}deg)`;
+      });
+      requestAnimationFrame(animateCards);
+    }
+    animateCards();
+  }
+});
+</script>
+
+</body>
+</html>
